@@ -1,0 +1,30 @@
+
+service: api-test
+
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: java11
+  profile: default
+
+package:
+  artifact: target/api-test-1.0.jar
+
+functions:
+  hello:
+    handler: com.serverless.Handler
+
+  cargaArchivo:
+    handler: com.serverless.HandlerCargaArchivo
+    events:
+      - http:
+          path: /cargaArchivo
+          method: post
+
+  descargaArchivo:
+    handler: com.serverless.HandlerDescargaArchivo
+    events:
+      - http:
+          path: /descargaArchivo
+          method: get
